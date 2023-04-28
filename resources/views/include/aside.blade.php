@@ -17,19 +17,22 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="{{ route('dashboard')}}">
+                <a class="nav-link" href="{{ route('dashboard') }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
+                    <span>Dashboard </span></a> hi 
             </li>
 
             <!-- Divider -->
+            @if (Auth::user()->user_type == 'admin')
             <hr class="sidebar-divider">
-            <li class="nav-item active">
-                <a class="nav-link" href="{{ route('category.index') }}">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Category</span></a>
-            </li>
-            <hr class="sidebar-divider">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ route('category.index') }}">
+                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <span>Category</span></a>
+                </li>
+                <hr class="sidebar-divider">
+
+            @endif
 
         </ul>
         <!-- End of Sidebar -->
@@ -41,6 +44,3 @@
             <div id="content">
 
                 @include('include.nav')
-
-
-

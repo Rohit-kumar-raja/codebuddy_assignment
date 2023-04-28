@@ -49,7 +49,6 @@
                 <!-- Loop through each category -->
                 @foreach ($categories as $category)
                     <!-- Include subcategories.blade.php file and pass the current category to it -->
-
                     @include('subcategories', ['category' => $category])
                 @endforeach
             </ul>

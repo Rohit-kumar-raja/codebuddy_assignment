@@ -1,9 +1,22 @@
 <!-- Displaying the current category -->
-<li>{{ $category->name }}
+<li>
 
-   @if ($category->parent_id!='')
-   <a href="{{ route('category.edit', $category->id) }}" class="btn btn-warning btn-sm mt-3">edit</a>
-   @endif
+    <div class="row">
+        <div class="col-6">
+            {{ $category->name }}
+        </div>
+        <div class="co-1">
+            <a href="{{ route('category.edit', $category->id) }}" class="btn btn-warning btn-sm mt-3">edit</a>
+
+        </div>
+        <div class="col-1">
+            <form method="post" action="{{ route('category.destroy', $category->id) }}">
+                @csrf
+                <input type="hidden" name="_method" value="DELETE">
+                <button type="submit" class="btn btn-danger btn-sm mt-3">delete</button>
+            </form>
+        </div>
+    </div>
     <!-- If category has children -->
     @if (count($category->children) > 0)
         <!-- Create a nested unordered list -->

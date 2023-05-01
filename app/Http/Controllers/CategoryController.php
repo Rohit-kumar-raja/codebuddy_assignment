@@ -30,13 +30,24 @@ class CategoryController extends Controller
         $data = Category::find($id);
         $all_category = Category::get();
 
-        return view('category-edit', ['data' => $data,'all_category'=>$all_category]);
+        return view('category-edit', ['data' => $data, 'all_category' => $all_category]);
     }
 
     public function update(Request $request, $id)
     {
-        Category::where('id', $id)->update($request->except(['_token','_method']));
+        Category::where('id', $id)->update($request->except(['_token', '_method']));
         return redirect()->route('category.index')->with('success', 'Category SuccessFully updated into the Database');
+    }
 
+    public function destroy($id)
+    {
+       try{
+        Category::destroy($id);
+        return back()->with('error', 'Category Deleted Successfully');
+
+       }catch(Exception $e){
+        return back()->with('error', 'Please Delete the Child First');
+
+       }
     }
 }

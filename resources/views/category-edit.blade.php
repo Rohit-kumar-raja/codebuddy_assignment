@@ -19,21 +19,23 @@
                     @csrf
                     <input type="hidden" name="_method" value="PUT">
                     <div class="row">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label for="parent_id">Parent Category</label>
-                                <select id="parent_id" class="form-control" name="parent_id" id="">
-                                    <option disabled> - Select - </option>
-                                    @foreach ($all_category as $category)
-                                        @if (isset($category->parent->id))
-                                            <option {{ $category->parent->id == $data->parent->id ? 'selected' : '' }}
-                                                value="{{ $category->parent->id }}">
-                                                {{ $category->parent->name }}</option>
-                                        @endif
-                                    @endforeach
-                                </select>
-                            </div>
+                       @if ($data->parent_id!='')
+                       <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="parent_id">Parent Category</label>
+                            <select id="parent_id" class="form-control" name="parent_id" id="">
+                                <option disabled> - Select - </option>
+                                @foreach ($all_category as $category)
+                                    @if (isset($category->parent->id))
+                                        <option {{ $category->parent->id == $data->parent->id ? 'selected' : '' }}
+                                            value="{{ $category->parent->id }}">
+                                            {{ $category->parent->name }}</option>
+                                    @endif
+                                @endforeach
+                            </select>
                         </div>
+                    </div>
+                       @endif
                         <div class="col-sm-6">
                             <label for="">Child Category Name</label>
                             <input value="{{ $data->name }}" name="name" type="text" class="form-control"
